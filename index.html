@@ -1,1 +1,671 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141310">
+  <meta name="description" content="Le Jour Boutique — moda feminina e curadoria contemporânea no centro de Lavras, Minas Gerais.">
+  <title>Le Jour Boutique | Moda feminina em Lavras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23141310'/%3E%3Cpath d='M21 17v30h22v-6H29V17z' fill='%23f4f0e8'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #161512;
+      --paper: #f3f0e8;
+      --warm: #e5dfd2;
+      --line: rgba(22, 21, 18, .18);
+      --accent: #6d1425;
+      --gold: #b69a62;
+      --white: #fffdf9;
+      --serif: "Italiana", "Times New Roman", serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    section[id] { scroll-margin-top: 76px; }
+    img { display: block; width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    .topline {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 24px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 88px;
+      padding: 0 clamp(20px, 4vw, 68px);
+      border-bottom: 1px solid var(--line);
+      background: rgba(243, 240, 232, .94);
+      backdrop-filter: blur(14px);
+    }
+    .brand {
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 2vw, 2rem);
+      letter-spacing: .12em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .brand span {
+      display: block;
+      margin-top: 5px;
+      font-family: var(--sans);
+      font-size: .52rem;
+      font-weight: 500;
+      letter-spacing: .45em;
+      text-align: center;
+    }
+    .nav, .header-actions { display: flex; align-items: center; gap: 28px; }
+    .header-actions { justify-content: flex-end; }
+    .nav a, .header-actions a {
+      position: relative;
+      font-size: .77rem;
+      font-weight: 500;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .nav a::after, .header-actions a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 100%; bottom: -6px;
+      height: 1px;
+      background: var(--ink);
+      transition: right .25s ease;
+    }
+    .nav a:hover::after, .header-actions a:hover::after,
+    .nav a:focus-visible::after, .header-actions a:focus-visible::after { right: 0; }
+    .menu-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
+    .mobile-menu { display: none; }
+
+    .hero {
+      position: relative;
+      min-height: min(760px, calc(100vh - 122px));
+      display: grid;
+      grid-template-columns: 42% 58%;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: #ded8cc;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: clamp(54px, 8vw, 120px) clamp(24px, 6vw, 92px);
+      background: var(--paper);
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 24px;
+      color: #524e47;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 720px;
+      margin-bottom: 28px;
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 6.6vw, 7.2rem);
+      font-weight: 400;
+      letter-spacing: -.035em;
+      line-height: .92;
+    }
+    .hero-copy > p:not(.eyebrow) {
+      max-width: 470px;
+      margin-bottom: 38px;
+      color: #575249;
+      font-size: 1.04rem;
+      line-height: 1.8;
+    }
+    .hero-media { position: relative; min-height: 520px; }
+    .hero-media::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(22,21,18,.08), transparent 40%), linear-gradient(0deg, rgba(22,21,18,.25), transparent 35%);
+      pointer-events: none;
+    }
+    .hero-media img { height: 100%; object-fit: cover; object-position: center 35%; }
+    .hero-caption {
+      position: absolute;
+      z-index: 2;
+      right: 28px;
+      bottom: 24px;
+      color: var(--white);
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 24px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.ghost { background: transparent; color: var(--ink); }
+    .button.ghost:hover { background: var(--ink); color: var(--white); }
+
+    .marquee {
+      display: flex;
+      gap: 36px;
+      padding: 15px 0;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: flex;
+      min-width: max-content;
+      gap: 36px;
+      animation: move 24s linear infinite;
+    }
+    .marquee span {
+      display: inline-flex;
+      align-items: center;
+      gap: 36px;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .marquee i { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+    @keyframes move { to { transform: translateX(-50%); } }
+
+    .section { padding: clamp(76px, 9vw, 132px) clamp(20px, 5vw, 76px); }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 48px;
+    }
+    .kicker {
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h2 {
+      max-width: 680px;
+      margin-bottom: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.7rem, 5vw, 5.7rem);
+      font-weight: 400;
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+    .section-head > p {
+      max-width: 390px;
+      margin-bottom: 4px;
+      color: #625e56;
+      line-height: 1.75;
+    }
+
+    .catalog-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .catalog-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-button {
+      min-height: 38px;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: border-color .2s ease, background .2s ease, color .2s ease;
+    }
+    .filter-button:hover { border-color: var(--line); }
+    .filter-button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--white); }
+    .catalog-count { flex: 0 0 auto; color: #69645b; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 20px; }
+    .product-card[hidden] { display: none; }
+    .product-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #ddd7cb; }
+    .product-media img { height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .product-media img { transform: scale(1.025); }
+    .product-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      padding: 7px 10px;
+      background: rgba(243,240,232,.92);
+      color: var(--ink);
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .product-info { padding-top: 17px; }
+    .product-meta { margin-bottom: 7px; color: #716c63; font-size: .68rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    .product-title { margin-bottom: 14px; font-family: var(--serif); font-size: clamp(1.45rem, 2vw, 2rem); font-weight: 400; line-height: 1.1; }
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--ink);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, .7fr);
+      min-height: 660px;
+      background: var(--ink);
+      color: var(--white);
+    }
+    .story-media { min-height: 520px; }
+    .story-media img { height: 100%; object-fit: cover; object-position: center; }
+    .story-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(54px, 7vw, 104px);
+    }
+    .story-copy .kicker { color: #cfb57d; }
+    .story-copy h2 { margin-bottom: 30px; font-size: clamp(2.6rem, 4.2vw, 5rem); }
+    .story-copy p { max-width: 480px; color: #d1ccc2; line-height: 1.85; }
+    .signature { margin-top: 26px; font-family: var(--serif); font-size: 1.5rem; font-style: italic; }
+
+    .visit { background: var(--warm); }
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .visit-copy { padding: clamp(38px, 6vw, 88px) 0; }
+    .visit-copy h2 { margin-bottom: 28px; }
+    .address { max-width: 440px; margin-bottom: 34px; color: #4e4942; font-size: 1.05rem; line-height: 1.8; }
+    .detail-list { margin: 0; padding: 0; list-style: none; }
+    .detail-list li {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+    .detail-list small { font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .visit-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .circle-mark {
+      width: min(30vw, 330px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(22,21,18,.32);
+      border-radius: 50%;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 4.5rem);
+      letter-spacing: .08em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .circle-mark span { display: block; margin-top: 8px; font-family: var(--sans); font-size: .58rem; font-weight: 500; letter-spacing: .35em; }
+
+    footer {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 48px;
+      padding: 56px clamp(20px, 5vw, 76px) 28px;
+      background: var(--paper);
+    }
+    .footer-brand .brand { margin-bottom: 18px; }
+    .footer-brand p { max-width: 340px; color: #5d5850; }
+    .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .footer-links strong { display: block; margin-bottom: 14px; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; }
+    .footer-links a { display: block; width: max-content; margin: 8px 0; color: #4f4b44; }
+    .footer-links a:hover { color: var(--accent); }
+    .copyright {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: #716c63;
+      font-size: .7rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .reveal { opacity: 1; transform: none; }
+
+    @media (max-width: 920px) {
+      .site-header { grid-template-columns: 1fr auto; min-height: 74px; }
+      .brand { justify-self: start; }
+      .desktop-nav, .header-actions { display: none; }
+      .menu-toggle { display: block; justify-self: end; }
+      .menu-toggle span { display: block; width: 23px; height: 1px; margin: 6px 0; background: currentColor; transition: transform .2s ease; }
+      .mobile-menu {
+        position: fixed;
+        z-index: 19;
+        inset: 108px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 38px 24px;
+        background: var(--paper);
+        transform: translateX(100%);
+        transition: transform .3s ease;
+      }
+      .mobile-menu.open { transform: none; }
+      .mobile-menu a { padding: 18px 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 2rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 540px; }
+      .hero-media { min-height: 78vw; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .story { grid-template-columns: 1fr; }
+      .story-media { min-height: 85vw; }
+      .visit-grid { grid-template-columns: 1fr; }
+      .visit-mark { min-height: 380px; border-top: 1px solid var(--line); }
+      .circle-mark { width: min(64vw, 320px); }
+    }
+
+    @media (max-width: 640px) {
+      .topline { font-size: .62rem; }
+      .hero-copy { min-height: auto; padding-top: 72px; padding-bottom: 72px; }
+      h1 { font-size: clamp(3.25rem, 16vw, 5rem); }
+      .actions { width: 100%; }
+      .button { flex: 1 1 100%; }
+      .hero-media { min-height: 118vw; }
+      .section { padding-top: 78px; padding-bottom: 78px; }
+      .catalog-toolbar { align-items: flex-start; flex-direction: column; }
+      .catalog-filters { width: 100%; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+      .catalog-filters::-webkit-scrollbar { display: none; }
+      .filter-button { flex: 0 0 auto; }
+      .product-grid { grid-template-columns: 1fr; gap: 38px; }
+      .story-copy { padding: 70px 24px; }
+      .visit-copy { padding-right: 0; }
+      footer { grid-template-columns: 1fr; }
+      .footer-links { grid-template-columns: 1fr 1fr; }
+      .copyright { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">Curadoria feminina no coração de Lavras · MG</div>
+  <header class="site-header">
+    <nav class="nav desktop-nav" aria-label="Navegação principal">
+      <a href="#colecao">Coleção</a>
+      <a href="#sobre">A Le Jour</a>
+    </nav>
+    <a class="brand" href="#inicio" aria-label="Le Jour Boutique — início">Le Jour<span>Boutique</span></a>
+    <div class="header-actions">
+      <a href="https://www.instagram.com/boutiquelejour/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20conhecer%20as%20novidades." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+  </header>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Menu mobile">
+    <a href="#colecao">Coleção</a>
+    <a href="#sobre">A Le Jour</a>
+    <a href="#visite">Visite a loja</a>
+    <a href="https://www.instagram.com/boutiquelejour/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20conhecer%20as%20novidades." target="_blank" rel="noopener">WhatsApp</a>
+  </nav>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Nova curadoria</p>
+        <h1 id="hero-title">Vista o seu momento.</h1>
+        <p>Peças escolhidas para acompanhar dias marcantes e transformar o cotidiano — com elegância, presença e personalidade.</p>
+        <div class="actions">
+          <a class="button" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Quero%20ver%20as%20novidades%20da%20loja." target="_blank" rel="noopener">Ver novidades <span aria-hidden="true">↗</span></a>
+          <a class="button ghost" href="#visite">Visitar a loja</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="assets/hero-le-jour.png" alt="Mulher com alfaiataria bordô em cenário arquitetônico contemporâneo">
+        <span class="hero-caption">Le Jour · Lavras</span>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Alfaiataria <i></i> Essenciais <i></i> Acessórios <i></i> Novidades <i></i> Jeans <i></i> Le Jour <i></i></span>
+        <span>Alfaiataria <i></i> Essenciais <i></i> Acessórios <i></i> Novidades <i></i> Jeans <i></i> Le Jour <i></i></span>
+      </div>
+    </div>
+
+    <section class="section" id="colecao" aria-labelledby="colecao-title">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">Catálogo Le Jour</p>
+          <h2 id="colecao-title">A coleção, escolhida para você.</h2>
+        </div>
+        <p>Uma seleção inspirada na curadoria da loja. Consulte cores, tamanhos e disponibilidade diretamente com a nossa equipe.</p>
+      </div>
+      <div class="catalog-toolbar" aria-label="Filtros do catálogo">
+        <div class="catalog-filters" role="group" aria-label="Filtrar por categoria">
+          <button class="filter-button" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+          <button class="filter-button" type="button" data-filter="roupas" aria-pressed="false">Roupas</button>
+          <button class="filter-button" type="button" data-filter="tricos" aria-pressed="false">Tricôs</button>
+          <button class="filter-button" type="button" data-filter="acessorios" aria-pressed="false">Acessórios</button>
+          <button class="filter-button" type="button" data-filter="calcados" aria-pressed="false">Calçados</button>
+        </div>
+        <span class="catalog-count" aria-live="polite">6 peças</span>
+      </div>
+      <div class="product-grid">
+        <article class="product-card" data-category="roupas">
+          <div class="product-media">
+            <img src="assets/catalogo-blazer-preto.png" alt="Mulher vestindo blazer preto estruturado com calça de alfaiataria">
+            <span class="product-badge">Nova seleção</span>
+          </div>
+          <div class="product-info">
+            <p class="product-meta">Alfaiataria · Preto</p>
+            <h3 class="product-title">Blazer Estruturado</h3>
+            <a class="product-link" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Blazer%20Estruturado." target="_blank" rel="noopener">Consultar disponibilidade <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="product-card" data-category="roupas">
+          <div class="product-media">
+            <img src="assets/editorial-le-jour.png" alt="Mulher vestindo conjunto feminino creme de corte minimalista">
+          </div>
+          <div class="product-info">
+            <p class="product-meta">Essenciais · Creme</p>
+            <h3 class="product-title">Conjunto Aura</h3>
+            <a class="product-link" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Conjunto%20Aura." target="_blank" rel="noopener">Consultar disponibilidade <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="product-card" data-category="tricos roupas">
+          <div class="product-media">
+            <img src="assets/catalogo-cardigan-creme.png" alt="Mulher vestindo cardigan de tricô creme com calça clara">
+            <span class="product-badge">Textura da estação</span>
+          </div>
+          <div class="product-info">
+            <p class="product-meta">Tricô · Marfim</p>
+            <h3 class="product-title">Cardigan Trama</h3>
+            <a class="product-link" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Cardigan%20Trama." target="_blank" rel="noopener">Consultar disponibilidade <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="product-card" data-category="acessorios">
+          <div class="product-media">
+            <img src="assets/acessorios-le-jour.png" alt="Bolsa preta estruturada com scarpin neutro e joias douradas">
+          </div>
+          <div class="product-info">
+            <p class="product-meta">Acessórios · Preto e dourado</p>
+            <h3 class="product-title">Seleção Atelier</h3>
+            <a class="product-link" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20conhecer%20a%20Sele%C3%A7%C3%A3o%20Atelier." target="_blank" rel="noopener">Consultar disponibilidade <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="product-card" data-category="calcados">
+          <div class="product-media">
+            <img src="assets/catalogo-tenis-retro.png" alt="Par de tênis retrô branco com detalhes pretos e sola caramelo">
+            <span class="product-badge">Casual premium</span>
+          </div>
+          <div class="product-info">
+            <p class="product-meta">Calçados · Branco e preto</p>
+            <h3 class="product-title">Tênis Ligne</h3>
+            <a class="product-link" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20saber%20mais%20sobre%20o%20T%C3%AAnis%20Ligne." target="_blank" rel="noopener">Consultar disponibilidade <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="product-card" data-category="roupas">
+          <div class="product-media">
+            <img src="assets/hero-le-jour.png" alt="Mulher vestindo conjunto de alfaiataria bordô em cenário arquitetônico">
+          </div>
+          <div class="product-info">
+            <p class="product-meta">Alfaiataria · Bordô</p>
+            <h3 class="product-title">Conjunto Bordeaux</h3>
+            <a class="product-link" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Conjunto%20Bordeaux." target="_blank" rel="noopener">Consultar disponibilidade <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="sobre" aria-labelledby="sobre-title">
+      <div class="story-media">
+        <img src="assets/catalogo-cardigan-creme.png" alt="Mulher vestindo cardigan creme no ambiente sofisticado da boutique" style="object-position: center top;">
+      </div>
+      <div class="story-copy reveal">
+        <p class="kicker">Le Jour, em Lavras</p>
+        <h2 id="sobre-title">Um espaço para vestir, sentir e permanecer.</h2>
+        <p>A Le Jour nasceu para tornar a escolha de se vestir uma experiência pessoal. Nossa curadoria reúne moda feminina contemporânea, atendimento próximo e peças que deixam espaço para você.</p>
+        <p class="signature">Seu estilo, no seu tempo.</p>
+      </div>
+    </section>
+
+    <section class="section visit" id="visite" aria-labelledby="visite-title">
+      <div class="visit-grid">
+        <div class="visit-copy reveal">
+          <p class="kicker">Venha nos conhecer</p>
+          <h2 id="visite-title">Sua próxima escolha está no centro de Lavras.</h2>
+          <p class="address">Rua Santana, 36<br>Centro · Lavras, Minas Gerais<br>CEP 37200-194</p>
+          <ul class="detail-list">
+            <li><small>Contato</small><a href="tel:+5535988000553">(35) 98800-0553</a></li>
+            <li><small>Instagram</small><a href="https://www.instagram.com/boutiquelejour/" target="_blank" rel="noopener">@boutiquelejour</a></li>
+          </ul>
+          <div class="actions" style="margin-top:32px">
+            <a class="button" href="https://www.google.com/maps/search/?api=1&query=Rua%20Santana%2C%2036%2C%20Lavras%2C%20MG%2C%2037200-194" target="_blank" rel="noopener">Como chegar <span aria-hidden="true">↗</span></a>
+            <a class="button ghost" href="https://wa.me/5535988000553?text=Ol%C3%A1%2C%20Le%20Jour!%20Gostaria%20de%20confirmar%20o%20hor%C3%A1rio%20de%20atendimento." target="_blank" rel="noopener">Confirmar horário</a>
+          </div>
+        </div>
+        <div class="visit-mark" aria-hidden="true">
+          <div class="circle-mark">Le Jour<span>Lavras · MG</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <div class="brand">Le Jour<span>Boutique</span></div>
+      <p>Moda feminina escolhida com intenção, para acompanhar a sua história.</p>
+    </div>
+    <div class="footer-links">
+      <div><strong>Descubra</strong><a href="#colecao">Coleção</a><a href="#sobre">A Le Jour</a><a href="#visite">Localização</a></div>
+      <div><strong>Converse</strong><a href="https://www.instagram.com/boutiquelejour/" target="_blank" rel="noopener">Instagram</a><a href="https://wa.me/5535988000553" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+5535988000553">Telefone</a></div>
+    </div>
+    <div class="copyright"><span>© <span id="year"></span> Le Jour Boutique</span><span>Lavras · Minas Gerais</span></div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const setMenu = (open) => {
+      mobileMenu.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+    toggle.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const productCards = document.querySelectorAll('.product-card');
+    const catalogCount = document.querySelector('.catalog-count');
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      let visibleCount = 0;
+      filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      productCards.forEach(card => {
+        const visible = filter === 'todos' || card.dataset.category.split(' ').includes(filter);
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+      catalogCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'peça' : 'peças'}`;
+    }));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
